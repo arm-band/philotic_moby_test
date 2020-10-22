@@ -1,0 +1,20 @@
+- name: Get packages from hosts
+  become: yes
+  become_user: ADMIN_USER
+  become_method: su
+
+  hosts:
+    - test_servers
+
+  tasks:
+    - name: Get packages
+      package_facts:
+        manager: auto
+      become: true
+
+    - name: Output packages
+      template:
+        src: ./package_list.j2
+        dest: "/workspace/{{ inventory_hostname }}_packages"
+        mode: '0644'
+      delegate_to: localhost

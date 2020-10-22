@@ -1,0 +1,5 @@
+/workspace/*
+!/workspace/entrypoint.sh
+!/workspace/get_packages.yml
+!/workspace/package_list.j2
+!/workspace/hosts

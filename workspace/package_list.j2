@@ -1,0 +1,14 @@
+# {{ inventory_hostname }}
+{% if ansible_facts.os_family == 'RedHat' %}
+{%   for package_name in ansible_facts.packages.keys()|sort %}
+{%     for package in ansible_facts.packages[package_name] %}
+{{       package['name'] }}-{{package['version']}}-{{package['release']}}.{{package['arch']}}
+{%     endfor %}
+{%   endfor %}
+{% elif ansible_facts.os_family == 'Debian' %}
+{%   for package_name in ansible_facts.packages.keys()|sort %}
+{%     for package in ansible_facts.packages[package_name] %}
+{{       [package['name'], package['version']] | join('_') }}
+{%     endfor %}
+{%   endfor %}
+{% endif %}
