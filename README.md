@@ -19,11 +19,11 @@ Ansibleコントロールノード を Dockerコンテナ として構築する�
 1. `docker-compose up -d`
 2. `docker-compose exec ansible /bin/bash`
 3. 1.で作成された公開鍵をリモートサーバに送り込んでください
-4. `ansible-playbook -i /workspace/hosts /workspace/get_packages.yml -u SSH_REMOTEUSER --private-key="/root/.ssh/PRIVATE_KEY" -K`
+4. `ansible-playbook -i /workspace/ansible/targets/hosts /workspace/ansible/main.yml -u SSH_REMOTEUSER --private-key="/root/.ssh/PRIVATE_KEY" -K`
 
 ### Finish
 
-`docker-compose down`
+1. `docker-compose down`
 
 ---
 

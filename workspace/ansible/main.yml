@@ -1,0 +1,24 @@
+- name: Get packages from hosts and do yum update
+
+  become: yes
+  become_user: ADMIN_USER
+  become_method: su
+
+  hosts:
+    - update_servers
+
+  tasks:
+    - name: Get packages from hosts before update
+      include_tasks: ./tasks/get_packages.yml
+    - name: Output packages from hosts before update
+      include_tasks: ./tasks/output_packages.yml
+      vars:
+        flag: before
+    - name: Do yum update
+      include_tasks: ./tasks/yum_update.yml
+    - name: Get packages from hosts after update
+      include_tasks: ./tasks/get_packages.yml
+    - name: Output packages from hosts after update
+      include_tasks: ./tasks/output_packages.yml
+      vars:
+        flag: after

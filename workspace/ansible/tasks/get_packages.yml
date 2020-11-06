@@ -1,0 +1,4 @@
+- name: Get packages
+  package_facts:
+    manager: auto
+  become: true

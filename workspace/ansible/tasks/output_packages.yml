@@ -1,0 +1,6 @@
+- name: Output packages
+  template:
+    src: ../templates/package_list.j2
+    dest: "/workspace/{{ inventory_hostname }}_packages_{{ flag }}"
+    mode: '0644'
+  delegate_to: localhost
